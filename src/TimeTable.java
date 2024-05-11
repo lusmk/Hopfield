@@ -9,12 +9,14 @@ public class TimeTable extends JFrame implements ActionListener {
 	private JTextField field[];
 	private CourseArray courses;
 	private Color CRScolor[] = {Color.RED, Color.GREEN, Color.BLACK};
+
+	private boolean started = false;
 	
 	public TimeTable() {
 		super("Dynamic Time Table");
 		setSize(500, 800);
 		setLayout(new FlowLayout());
-
+		
 		screen.setPreferredSize(new Dimension(400, 800));
 		add(screen);
 		
@@ -28,7 +30,7 @@ public class TimeTable extends JFrame implements ActionListener {
 		String capField[] = {"Slots:", "Courses:", "Clash File:", "Iters:", "Shift:"};
 		field = new JTextField[capField.length];
 		
-		String capButton[] = {"Load", "Start", "Step", "Print", "Exit"};
+		String capButton[] = {"Load", "Start", "Step", "Print", "Exit", "Continue"};
 		tool = new JButton[capButton.length];
 		
 		tools.setLayout(new GridLayout(2 * capField.length + capButton.length, 1));
@@ -79,6 +81,7 @@ public class TimeTable extends JFrame implements ActionListener {
 			draw();
 			break;
 		case 1:
+			started = false;
 			min = Integer.MAX_VALUE;
 			step = 0;
 			for (int i = 1; i < courses.length(); i++) courses.setSlot(i, 0);
@@ -94,6 +97,7 @@ public class TimeTable extends JFrame implements ActionListener {
 			}
 			System.out.println("Shift = " + field[4].getText() + "\tMin clashes = " + min + "\tat step " + step);
 			setVisible(true);
+			started = true;
 			break;
 		case 2:
 			courses.iterate(Integer.parseInt(field[4].getText()));
@@ -106,6 +110,24 @@ public class TimeTable extends JFrame implements ActionListener {
 			break;
 		case 4:
 			System.exit(0);
+			break;
+		case 5:
+			if (started) {
+				min = Integer.MAX_VALUE;
+				step = 0;
+				for (int currentIter = 1; currentIter <= Integer.parseInt(field[3].getText()); currentIter++) {
+					courses.iterate(Integer.parseInt(field[4].getText()));
+					draw();
+					clashes = courses.clashesLeft();
+					if (clashes < min) {
+						min = clashes;
+						step = currentIter;
+					}
+				}
+				System.out.println("Shift = " + field[4].getText() + "\tMin clashes = " + min + "\tat step " + step);
+				setVisible(true);
+				break;
+			}
 		}
 	}
 

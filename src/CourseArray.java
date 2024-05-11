@@ -15,7 +15,7 @@ public class CourseArray {
 	
 	public void readClashes(String filename) {
 		try {
-			BufferedReader file = new BufferedReader(new FileReader(filename));
+			BufferedReader file = new BufferedReader(new FileReader("C:/Users/lusin/Hopfield/src/" + filename));
 			StringTokenizer line = new StringTokenizer(file.readLine());
 			int count = line.countTokens(), i, j, k;
 			int index[];
@@ -89,5 +89,16 @@ public class CourseArray {
 	public void printResult() {
 		for (int i = 1; i < elements.length; i++)
 			System.out.println(i + "\t" + elements[i].mySlot);
+	}
+
+	public int[] getTimeSlots(int index){
+		int[] timeSlots = new int[elements.length];
+		for (int i = 0; i < timeSlots.length; i++){
+			if (elements[i].mySlot == index)
+					timeSlots[i] = 1;
+			else timeSlots[i] = -1;
+		}
+
+		return timeSlots;
 	}
 }
