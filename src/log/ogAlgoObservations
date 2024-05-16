@@ -1,0 +1,105 @@
+File lse-f-91.stu
+Timeslots 17
+Courses 381
+
+100 iterations in each case, increase shifts by 5
+Shift = 5	Min clashes = 130	at step 77
+Shift = 10	Min clashes = 94	at step 80
+Shift = 15	Min clashes = 58	at step 85
+Shift = 20	Min clashes = 56	at step 77
+Shift = 25	Min clashes = 60	at step 19
+Shift = 30	Min clashes = 50	at step 19
+Shift = 35	Min clashes = 68	at step 99
+Shift = 40	Min clashes = 74	at step 37
+Shift = 45	Min clashes = 70	at step 28
+Shift = 50	Min clashes = 48	at step 75
+Shift = 55	Min clashes = 58	at step 100
+Shift = 60	Min clashes = 58	at step 27
+Shift = 65	Min clashes = 62	at step 73
+Shift = 70	Min clashes = 48	at step 75
+Shift = 75	Min clashes = 44	at step 36 /minimum clash
+Shift = 80	Min clashes = 50	at step 99
+Shift = 85	Min clashes = 94	at step 1
+Shift = 90	Min clashes = 62	at step 86
+Shift = 95	Min clashes = 64	at step 41
+Shift = 100	Min clashes = 56	at step 46
+
+make same steps with 1000 iterations
+Shift = 5	Min clashes = 106	at step 159
+Shift = 10	Min clashes = 70	at step 524
+Shift = 15	Min clashes = 42	at step 755
+Shift = 20	Min clashes = 30	at step 594
+Shift = 25	Min clashes = 38	at step 473
+Shift = 30	Min clashes = 24	at step 897
+Shift = 35	Min clashes = 46	at step 883
+Shift = 40	Min clashes = 48	at step 904
+Shift = 45	Min clashes = 54	at step 826
+Shift = 50	Min clashes = 34	at step 866
+Shift = 55	Min clashes = 46	at step 316
+Shift = 60	Min clashes = 48	at step 185
+Shift = 65	Min clashes = 22	at step 436 /minimum clash
+Shift = 70	Min clashes = 48	at step 75
+Shift = 75	Min clashes = 28	at step 469
+Shift = 80	Min clashes = 38	at step 114
+Shift = 85	Min clashes = 94	at step 1
+Shift = 90	Min clashes = 30	at step 970
+Shift = 95	Min clashes = 44	at step 715
+Shift = 100	Min clashes = 38	at step 969
+
+File tre-s-92.stu
+Timeslots 20
+Courses 261
+
+Shift = 1	Min clashes = 12054	at step 1
+Shift = 1	Min clashes = 4928	at step 51
+Shift = 5	Min clashes = 232	at step 13
+Shift = 10	Min clashes = 188	at step 9
+Shift = 15	Min clashes = 170	at step 7
+Shift = 20	Min clashes = 304	at step 1
+Shift = 25	Min clashes = 156	at step 7    /minimum clash
+Shift = 30	Min clashes = 186	at step 9
+Shift = 35	Min clashes = 158	at step 21
+Shift = 40	Min clashes = 304	at step 1
+Shift = 45	Min clashes = 156	at step 7    /minimum clash
+Shift = 50	Min clashes = 186	at step 9
+Shift = 55	Min clashes = 158	at step 21
+Shift = 60	Min clashes = 304	at step 1
+Shift = 65	Min clashes = 156	at step 7     /minimum clash
+Shift = 70	Min clashes = 186	at step 9
+Shift = 75	Min clashes = 158	at step 21
+Shift = 80	Min clashes = 304	at step 1
+Shift = 85	Min clashes = 156	at step 7    /minimum clash, every 20 shifts
+Shift = 90	Min clashes = 186	at step 9
+
+continued updating by 1 till 100
+Shift = 91	Min clashes = 108	at step 903
+Shift = 92	Min clashes = 178	at step 19
+Shift = 93	Min clashes = 114	at step 155
+Shift = 94	Min clashes = 90	at step 53 /minimum clash
+Shift = 95	Min clashes = 158	at step 21
+Shift = 96	Min clashes = 124	at step 34
+Shift = 97	Min clashes = 108	at step 532
+Shift = 98	Min clashes = 116	at step 34
+Shift = 99	Min clashes = 116	at step 666
+Shift = 100	Min clashes = 304	at step 1
+
+and tried by going +6 shifts, and 1000 iteration
+Shift = 6	Min clashes = 168	at step 59
+Shift = 12	Min clashes = 128	at step 72
+Shift = 18	Min clashes = 100	at step 43
+Shift = 24	Min clashes = 158	at step 22
+Shift = 30	Min clashes = 186	at step 9
+Shift = 36	Min clashes = 124	at step 34
+Shift = 42	Min clashes = 76	at step 180 /minimum clash
+Shift = 48	Min clashes = 144	at step 22
+Shift = 54	Min clashes = 90	at step 53
+Shift = 60	Min clashes = 304	at step 1
+Shift = 66	Min clashes = 106	at step 67
+Shift = 72	Min clashes = 178	at step 19
+Shift = 78	Min clashes = 116	at step 34
+Shift = 84	Min clashes = 158	at step 22
+Shift = 90	Min clashes = 186	at step 9
+Shift = 96	Min clashes = 124	at step 34
+Shift = 102	Min clashes = 76	at step 180 /minimum clash
+Shift = 108	Min clashes = 144	at step 22
+Shift = 114	Min clashes = 90	at step 53

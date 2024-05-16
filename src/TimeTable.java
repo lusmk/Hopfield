@@ -11,6 +11,8 @@ public class TimeTable extends JFrame implements ActionListener {
 	private Color CRScolor[] = {Color.RED, Color.GREEN, Color.BLACK};
 
 	private boolean started = false;
+
+	private Autoassociator autoAssociator = null;
 	
 	public TimeTable() {
 		super("Dynamic Time Table");
@@ -30,7 +32,7 @@ public class TimeTable extends JFrame implements ActionListener {
 		String capField[] = {"Slots:", "Courses:", "Clash File:", "Iters:", "Shift:"};
 		field = new JTextField[capField.length];
 		
-		String capButton[] = {"Load", "Start", "Step", "Print", "Exit", "Continue"};
+		String capButton[] = {"Load", "Start", "Step", "Print", "Exit", "Continue", "Train"};
 		tool = new JButton[capButton.length];
 		
 		tools.setLayout(new GridLayout(2 * capField.length + capButton.length, 1));
@@ -47,9 +49,9 @@ public class TimeTable extends JFrame implements ActionListener {
 			tools.add(tool[i]);
 		}
 		
-		field[0].setText("17");
-		field[1].setText("381");
-		field[2].setText("lse-f-91.stu");
+		field[0].setText("20");
+		field[1].setText("261");
+		field[2].setText("tre-s-92.stu");
 		field[3].setText("1");
 	}
 	
@@ -113,7 +115,7 @@ public class TimeTable extends JFrame implements ActionListener {
 			break;
 		case 5:
 			if (started) {
-				min = Integer.MAX_VALUE;
+				min = courses.clashesLeft();
 				step = 0;
 				for (int currentIter = 1; currentIter <= Integer.parseInt(field[3].getText()); currentIter++) {
 					courses.iterate(Integer.parseInt(field[4].getText()));
@@ -126,8 +128,24 @@ public class TimeTable extends JFrame implements ActionListener {
 				}
 				System.out.println("Shift = " + field[4].getText() + "\tMin clashes = " + min + "\tat step " + step);
 				setVisible(true);
-				break;
 			}
+			break;
+		case 6:
+			min = Integer.MAX_VALUE;
+			step = 0;
+			int all = Integer.parseInt(field[3].getText());
+			for(int i = 1; i<courses.length(); i++) courses.setSlot(i, 0);
+			for (int iter  = 1; iter <= all; iter++){
+				courses.iterate(Integer.parseInt(field[4].getText()));
+				draw();
+				clashes = courses.clashesLeft();
+				if (clashes < min)
+				{
+					min = clashes;
+					step = iter;
+				}
+			}
+			setVisible(true);
 		}
 	}
 
