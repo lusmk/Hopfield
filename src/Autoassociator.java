@@ -18,8 +18,8 @@ public class Autoassociator {
 	}
 	
 	public void training(int pattern[]) {
-		for (int i = 0; i < weights.length; i ++){
-			for (int j = 0; j < weights[i].length; j++){
+		for (int i = 1; i < weights.length; i ++){
+			for (int j = 1; j < weights[i].length; j++){
 				if (j != i) weights[i][j] += pattern[i] * pattern[j];
 			}
 		}
@@ -67,11 +67,11 @@ public class Autoassociator {
 
 	private int nextState(int[] neurons, int k){
 		int arg = 0;
-		for (int j = 0; j < neurons.length; j++){
+		for (int j = 1; j < neurons.length; j++){
 			arg += weights[k][j] * neurons[j];
 		}
 
-		if (arg > 0) return 1;
+		if (arg >= 0) return 1;
 		else return - 1;
 	}
 

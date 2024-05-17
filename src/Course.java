@@ -48,4 +48,6 @@ public class Course {
 			mySlot = 0;
 		}
 	}
+
+	public boolean inSlot(int slot) {return mySlot == slot;}
 }

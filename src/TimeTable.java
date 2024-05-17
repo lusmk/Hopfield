@@ -51,7 +51,7 @@ public class TimeTable extends JFrame implements ActionListener {
 		
 		field[0].setText("20");
 		field[1].setText("261");
-		field[2].setText("tre-s-92.stu");
+		field[2].setText("lse-f-91.stu");
 		field[3].setText("1");
 	}
 	
@@ -146,10 +146,42 @@ public class TimeTable extends JFrame implements ActionListener {
 				}
 			}
 			setVisible(true);
+			train(Integer.parseInt(field[0].getText()));
+			System.out.println(autoAssociator.getTrainingCapacity());
 		}
 	}
 
 	public static void main(String[] args) {
 		new TimeTable();
+	}
+
+	private void train(int slots){
+		if (autoAssociator.getTrainingCapacity() == 0) return;
+		int[] timeSlots = initializeTimeslots(slots);
+
+		for (int i = 1; i < courses.length(); i++){
+			if(CourseHasClashes(i)) timeSlots[courses.slot(i)] = -1;
+		}
+
+		for (int i = 0 ; i< timeSlots.length;i++) {
+			if (autoAssociator.getTrainingCapacity()==0) return;
+			else if (TimeslotNoClash(timeSlots[i])) autoAssociator.training(courses.getTimeSlots(timeSlots[i]));
+		}
+	}
+
+
+	private int[] initializeTimeslots(int slots){
+		int[] timeslots = new int[slots];
+		for (int i = 0; i < slots; i++)
+			timeslots[i] = i;
+		return timeslots;
+	}
+
+	private boolean CourseHasClashes(int i){
+		return courses.status(i) != 0;
+	}
+
+	private boolean TimeslotNoClash(int timeslot){
+		return timeslot != -1;
 	}
 }

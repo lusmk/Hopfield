@@ -93,8 +93,8 @@ public class CourseArray {
 
 	public int[] getTimeSlots(int index){
 		int[] timeSlots = new int[elements.length];
-		for (int i = 0; i < timeSlots.length; i++){
-			if (elements[i].mySlot == index)
+		for (int i = 1; i < timeSlots.length; i++){
+			if (elements[i].inSlot(index))
 					timeSlots[i] = 1;
 			else timeSlots[i] = -1;
 		}
