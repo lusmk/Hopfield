@@ -60,15 +60,15 @@ public class Autoassociator {
 
 
 	private void initialState(){
-		for (int i = 0; i < weights.length; i ++)
-			for (int j = 0; j < weights[i].length; j ++)
+		for (int i = 1; i < weights.length; i ++)
+			for (int j = 1; j < weights[i].length; j ++)
 				weights[i][j] = 0;
 	}
 
 	private int nextState(int[] neurons, int k){
 		int arg = 0;
 		for (int j = 1; j < neurons.length; j++){
-			arg += weights[k][j] * neurons[j];
+			arg += (weights[k][j] * neurons[j]);
 		}
 
 		if (arg >= 0) return 1;

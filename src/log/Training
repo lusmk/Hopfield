@@ -1,0 +1,22 @@
+tre-s-92.stu
+courses 261
+timeslots 20
+
+0 case timeslots 25
+
+25 timeslots, 1000 iterations
+Shift = 42	Min clashes = 0	at step 989 / case for training
+
+did for 1 update at period 1
+after training: achieved 0 clashes at step 86
+
+lse-f-91.stu
+courses 381
+timeslots 17
+
+increased to 19 timeslots
+Shift = 16	Min clashes = 0	at step 254
+
+After 1 Update with period 2, achieved 0 clashes at step 612 (increase)
+
+

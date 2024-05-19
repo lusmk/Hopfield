@@ -13,6 +13,9 @@ public class TimeTable extends JFrame implements ActionListener {
 	private boolean started = false;
 
 	private Autoassociator autoAssociator = null;
+
+	private static int updatePer;
+	private static int updateNum;
 	
 	public TimeTable() {
 		super("Dynamic Time Table");
@@ -24,12 +27,14 @@ public class TimeTable extends JFrame implements ActionListener {
 		
 		setTools();
 		add(tools);
-		
+
+		updateNum = 1;
+		updatePer = 1;
 		setVisible(true);
 	}
 	
 	public void setTools() {
-		String capField[] = {"Slots:", "Courses:", "Clash File:", "Iters:", "Shift:"};
+		String capField[] = {"Slots:", "Courses:", "Clash File:", "Iters:", "Shift:", "Update Period:", "Update Number:"};
 		field = new JTextField[capField.length];
 		
 		String capButton[] = {"Load", "Start", "Step", "Print", "Exit", "Continue", "Train"};
@@ -49,10 +54,12 @@ public class TimeTable extends JFrame implements ActionListener {
 			tools.add(tool[i]);
 		}
 		
-		field[0].setText("20");
-		field[1].setText("261");
+		field[0].setText("17");
+		field[1].setText("381");
 		field[2].setText("lse-f-91.stu");
 		field[3].setText("1");
+		field[5].setText("0");
+		field[6].setText("0");
 	}
 	
 	public void draw() {
@@ -80,11 +87,17 @@ public class TimeTable extends JFrame implements ActionListener {
 			int slots = Integer.parseInt(field[0].getText());
 			courses = new CourseArray(Integer.parseInt(field[1].getText()) + 1, slots);
 			courses.readClashes(field[2].getText());
+			if (autoAssociator == null) {
+				autoAssociator = new Autoassociator(courses);
+				System.out.println("Training capacity: " +  autoAssociator.getTrainingCapacity());
+			}
 			draw();
 			break;
 		case 1:
 			started = false;
 			min = Integer.MAX_VALUE;
+			updatePer = Integer.parseInt(field[5].getText());
+			updateNum = Integer.parseInt(field[6].getText());
 			step = 0;
 			for (int i = 1; i < courses.length(); i++) courses.setSlot(i, 0);
 			
@@ -96,6 +109,8 @@ public class TimeTable extends JFrame implements ActionListener {
 					min = clashes;
 					step = iteration;
 				}
+
+				for(int k = 0; k < updateNum; k++) runUnitUpdate();
 			}
 			System.out.println("Shift = " + field[4].getText() + "\tMin clashes = " + min + "\tat step " + step);
 			setVisible(true);
@@ -147,13 +162,41 @@ public class TimeTable extends JFrame implements ActionListener {
 			}
 			setVisible(true);
 			train(Integer.parseInt(field[0].getText()));
-			System.out.println(autoAssociator.getTrainingCapacity());
+			System.out.println("Training capacity: " +  autoAssociator.getTrainingCapacity());
 		}
 	}
 
 	public static void main(String[] args) {
 		new TimeTable();
 	}
+
+	private void runUnitUpdate()
+	{
+		int[] clashedTimeSlot = null;
+		for (int i = 1; i < courses.length(); i++) {
+			if (CourseHasClashes(i)) {
+				clashedTimeSlot = courses.getTimeSlots(courses.slot(i));
+				clashedTimeSlot[0] = courses.slot(i);
+			}
+		}
+		if (clashedTimeSlot != null) {
+			int numOfSlots = Integer.parseInt(field[0].getText());
+			int timeSlotIndex = clashedTimeSlot[0];
+			int updatedNeuronIndex = autoAssociator.unitUpdate(clashedTimeSlot);
+			if (clashedTimeSlot[updatedNeuronIndex] == 1 && courses.slot(updatedNeuronIndex) != timeSlotIndex) {
+				courses.setSlot(updatedNeuronIndex, timeSlotIndex);
+			}
+			if (clashedTimeSlot[updatedNeuronIndex] == -1 && courses.slot(updatedNeuronIndex) == timeSlotIndex) {
+				int newTimeSlotIndex = (int) (Math.floor(Math.random() * numOfSlots));
+				courses.setSlot(updatedNeuronIndex, newTimeSlotIndex);
+			}
+			draw();
+		}
+		else {
+			System.out.println("Minimum achieved");
+		}
+	}
+
 
 	private void train(int slots){
 		if (autoAssociator.getTrainingCapacity() == 0) return;

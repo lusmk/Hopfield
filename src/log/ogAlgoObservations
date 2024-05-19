@@ -46,6 +46,18 @@ Shift = 90	Min clashes = 30	at step 970
 Shift = 95	Min clashes = 44	at step 715
 Shift = 100	Min clashes = 38	at step 969
 
+minimum clashes 22 are also achieved with 16 shifts and 10000 iterations
+Shift = 16	Min clashes = 22	at step 8994
+
+increased timeslot by 1
+Shift = 65	Min clashes = 2	at step 372
+
+increased to 19, 1000 iterations, cases for training
+Shift = 16	Min clashes = 0	at step 254
+Shift = 20	Min clashes = 0	at step 85
+Shift = 15	Min clashes = 0	at step 667
+Shift = 13	Min clashes = 0	at step 39
+
 File tre-s-92.stu
 Timeslots 20
 Courses 261
@@ -103,3 +115,10 @@ Shift = 96	Min clashes = 124	at step 34
 Shift = 102	Min clashes = 76	at step 180 /minimum clash
 Shift = 108	Min clashes = 144	at step 22
 Shift = 114	Min clashes = 90	at step 53
+
+Tried different shifts for up to 20000 iterations with up to 100 shifts didn't get better result for minimum clashes
+
+increasing timeslots
+
+25 timeslots update period 1 and update number 1, 1000 iterations
+Shift = 42	Min clashes = 0	at step 989 / case for training
